@@ -1,21 +1,27 @@
 #include <bits/stdc++.h>
 
-struct number {
-  int x;
-  
-  number() : x{} {}
-  number(int x) : x{x} {}
-  number operator +(number that) {
-    return number(this->x + that.x);
-  }
-  friend std::ostream& operator <<(std::ostream& out, number that) {
-    return out << that.x;
-  }
-};
+int solve(const int& k) {
+    if (!(k % 2) || !(k % 5)) {
+        return -1;
+    }
+
+    int answer{1};
+    int current{7 % k};
+
+    while (current) {
+        current = current * 10 + 7;
+        current %= k;
+        answer++;
+    }
+
+    return answer;
+}
 
 int main() {
-  number x(10);
-  number y(11);
-  
-  std::cout << x + y << std::endl;  // 21
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int k; std::cin >> k;
+
+    std::cout << solve(k) << '\n';
 }
